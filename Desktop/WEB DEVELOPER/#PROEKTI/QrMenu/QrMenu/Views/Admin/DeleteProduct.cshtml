@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+@model Product
+@{
+    ViewData["Title"] = "DeleteProduct";
+}
+
+@{
+    List<SelectListItem> categoryNames = new List<SelectListItem>();
+    
+
+            
+    @foreach (Category item in ViewBag.Category)
+           {
+                    categoryNames.Add(new SelectListItem() { Text = item.CategoryName, Value =item.CategoryId.ToString() });
+
+           }
+
+
+}
+
+@{
+    if (SignInManager.IsSignedIn(User))
+    {
+    <form method="post">
+        <input asp-for="ProductId" hidden />
+      <div class="card bg-body mb-3">
+      <div class="card-header text-center">DELETE PRODUCT</div>
+      <div class="card-body">
+
+           <div class="mb-3">
+              <label asp-for="ProductId"></label><br/>
+              <input asp-for="ProductId" disabled class="form-control" placeholder="Please enter id"/>
+          </div>
+
+          <div class="mb-3">
+              <label asp-for="ProductName"></label><br/>
+              <input asp-for="ProductName" disabled class="form-control" placeholder="Please enter name"/>
+          </div>
+
+           <div class="mb-3">
+            <label asp-for="CategoryId" ></label><br/>
+            <select class="form-select border-secondary" style="max-width:300px;"
+        asp-for="CategoryId" asp-items="categoryNames">
+                            <option selected="selected" value=""></option>
+                        </select>
+                        
+            </div>
+
+           <div class="mb-3">
+            <label asp-for="ProductDescription"></label>
+            <textarea asp-for="ProductDescription" disabled class="form-control border-secondary" rows="2"></textarea>
+          </div>
+
+           <div class="mb-3">
+          <label asp-for="ProductStatus"></label>
+          <select class="form-select border-secondary" style="max-width:300px;"
+        asp-for="ProductStatus" asp-items="Html.GetEnumSelectList<Status>()">
+            <option selected="selected" value=""></option>
+            </select>
+          </div>
+
+            <div class="mb-3">
+              <label asp-for="ProductPrice"></label><br/>
+              <input asp-for="ProductPrice" class="form-control" placeholder="Please enter price"/>
+          </div>
+
+          <div class="mb-3 text-end">
+            <a asp-controller="Admin" asp-action="Logged" class="btn btn-outline-dark">
+            <i class="bi bi-arrow-left-circle-fill"></i></a>
+            <button type="submit" class="btn btn-danger" style="width:150px;">Delete</button>
+           </div>
+
+          </div>
+         
+
+      </div>
+     
+    </form>}
+    else
+    { <center><p>Please login!</p></center>}
+}
+

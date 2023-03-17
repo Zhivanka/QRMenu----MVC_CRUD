@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+@model QrMenu.Models.User
+
+@{
+    ViewData["Title"] = "Admin Home";
+}
+
+
+<div class="modal-body">
+
+    @{if(SignInManager.IsSignedIn(User))
+        {<div class="card border-light mb-3">
+          <div class="card-header text-center">Admin options</div>
+          <div class="card-body">
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3 text-end"><a asp-controller="Admin" asp-action="CreateCategory" class="btn btn-lg btn-dark">
+                    <i class="bi bi-plus-circle"></i>&nbsp; Create Category</a></div>
+                <div class="col-3"><a asp-controller="Admin" asp-action="DisplayCategory"class="btn btn-lg btn-dark">
+                    <i class="bi bi-pencil-square"></i>&nbsp; Display Category</a></div>
+                 <div class="col-3"></div>
+            </div>
+
+            <br/>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3 text-end"><a asp-controller="Admin" asp-action="CreateProduct" class="btn btn-lg btn-dark">
+                    <i class="bi bi-plus-circle"></i>&nbsp; Create Product &nbsp;</a></div>
+                <div class="col-3"><a asp-controller="Admin" asp-action="DisplayProduct" class="btn btn-lg btn-dark">
+                   <i class="bi bi-pencil-square"></i>&nbsp; Display Product &nbsp;</a></div>
+                <div class="col-3"></div>
+            </div>
+
+            </div>
+            </div>}
+     else
+    { <center><p>Please login!</p></center>}
+        
+        }
+
+
+
+
+
+</div>
+

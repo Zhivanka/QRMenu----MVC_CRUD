@@ -1,0 +1,72 @@
+﻿<!--Strictly typed definirame deka ovojl view kje ni bide povrzan samo so eden model LoginView modelot-->
+@model QrMenu.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+@Html.ValidationSummary(false,"", new {@class = "text-danger d-flex justify-content-center font-weight-bold"})
+
+@section scripts {
+
+<script type="text/javascript">
+
+    function AlertName()
+
+    {
+
+        alert('You clicked ');
+
+    }
+
+</script>
+
+}
+
+
+<div class="modal-body" onload="AlertName()">
+
+
+    <div class="row">
+     
+   <div class="col-4"></div>
+
+   <div class="col-4">
+   <div class="card border-secondary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Login</div>
+  <div class="card-body">
+  <form method="post" asp-action="Login" asp-controller="Account">
+    <div class="form-group">
+      <label asp-for="UserName" class="form-label mt-4"></label>
+      <input asp-for="UserName" type="text" class="form-control" placeholder="Enter username">
+      <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+      <label  asp-for="Password" class="form-label mt-4"></label>
+      <input  asp-for="Password" type="password" class="form-control" placeholder="Enter password">
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+     <div class="form-group row">
+      <div class="form-check">
+       <input asp-for="RememberMe" type="checkbox" class="checkbox-inline" onclick="AlertName()">
+       <label asp-for="RememberMe" class="form-check-label" onclick="AlertName()"></label>
+       </div>
+        <span asp-validation-for="RememberMe" class="text-warning"></span>
+     </div>
+    <br/>
+    
+    <button type="submit" class="btn btn-primary btn-sm" onclick="AlertName()">Submit</button>
+  
+</form>
+
+  </div>
+  </div>
+  </div>
+  <div class="col-4"></div>
+  </div>
+  
+
+
+
+</div>
+
